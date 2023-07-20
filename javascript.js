@@ -116,6 +116,19 @@ class LinkedList {
     }
     return false;
   }
+
+  find(x) {
+    let temp = this.head;
+    let index = 0;
+    while (temp.data !== null) {
+      if (temp.data == x) {
+        return index;
+      }
+      index += 1;
+      temp = temp.next;
+    }
+    return null;
+  }
 }
 
 class Node {
@@ -137,3 +150,5 @@ console.log(ll);
 console.log(ll.getIndex(1));
 console.log(ll.pop());
 console.log(ll.contains(100));
+ll.append(200);
+console.log(ll.find(200));
