@@ -54,8 +54,13 @@ class LinkedList {
 
   //append(value) adds a new node containing value to the end of the list
   append(data) {
-    this.head.next = new Node(data);
+    let temp = this.head;
+    while (temp.next !== null) {
+      temp = temp.next;
+    }
+    temp.next = new Node(data);
     this.size++;
+    return this.head;
   }
   //adds a new node containing value to the start of the list. Pass this.head to the next argument as we need to move rest of list over
   prepend(data) {
@@ -96,8 +101,10 @@ class LinkedList {
     while (temp.next !== null) {
       if (index > 0) {
         tempLL.append(temp.data);
+        index++;
       } else {
         tempLL.prepend(temp.data);
+        index++;
       }
       temp = temp.next;
     }
@@ -120,14 +127,28 @@ class LinkedList {
   find(x) {
     let temp = this.head;
     let index = 0;
-    while (temp.data !== null) {
+    while (temp.next !== null) {
       if (temp.data == x) {
         return index;
       }
       index += 1;
       temp = temp.next;
     }
+    if (temp.data == x) {
+      return index;
+    }
     return null;
+  }
+
+  toString() {
+    let temp = this.head;
+    let string = "";
+    while (temp.next !== null) {
+      string += "(" + temp.data + ") -> ";
+      temp = temp.next;
+    }
+    string += "(" + temp.data + ") -> Null";
+    return string;
   }
 }
 
@@ -140,15 +161,15 @@ class Node {
 
 const ll = new LinkedList();
 ll.prepend(100);
-console.log(ll);
 ll.append(200);
+ll.append(200);
+ll.append(300);
 console.log(ll);
 console.log(ll.getSize());
 console.log(ll.getHead());
 console.log(ll.getTail());
-console.log(ll);
 console.log(ll.getIndex(1));
-console.log(ll.pop());
 console.log(ll.contains(100));
-ll.append(200);
-console.log(ll.find(200));
+console.log(ll.find(100));
+console.log(ll.pop(300));
+console.log(ll.toString());
