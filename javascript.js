@@ -101,8 +101,20 @@ class LinkedList {
       }
       temp = temp.next;
     }
-    this.head = tempLL;
+    this.head = tempLL.head;
     return this.head;
+  }
+
+  //checks to see if the linked list contains x
+  contains(x) {
+    let temp = this.head;
+    while (temp.data !== null) {
+      if (temp.data == x) {
+        return true;
+      }
+      temp = temp.next;
+    }
+    return false;
   }
 }
 
@@ -124,3 +136,4 @@ console.log(ll.getTail());
 console.log(ll);
 console.log(ll.getIndex(1));
 console.log(ll.pop());
+console.log(ll.contains(100));
