@@ -108,6 +108,7 @@ class LinkedList {
       }
       temp = temp.next;
     }
+    this.size -= 1;
     this.head = tempLL.head;
     return this.head;
   }
@@ -150,6 +151,26 @@ class LinkedList {
     string += "(" + temp.data + ") -> Null";
     return string;
   }
+
+  insertAt(data, index) {
+    let temp = this.head;
+    let tempLL = new LinkedList();
+    for (let i = 0; i < this.size + 1; i++) {
+      if (index == i) {
+        tempLL.prepend(data);
+      } else if (i == 0) {
+        tempLL.prepend(temp.data);
+        temp = temp.next;
+      } else if (i == index) {
+        tempLL.append(data);
+      } else {
+        tempLL.append(temp.data);
+        temp = temp.next;
+      }
+    }
+    this.size++;
+    this.head = tempLL.head;
+  }
 }
 
 class Node {
@@ -172,4 +193,7 @@ console.log(ll.getIndex(1));
 console.log(ll.contains(100));
 console.log(ll.find(100));
 console.log(ll.pop(300));
+console.log(ll.toString());
+ll.insertAt(500, 0);
+console.log(ll);
 console.log(ll.toString());
