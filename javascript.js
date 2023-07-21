@@ -171,6 +171,30 @@ class LinkedList {
     this.size++;
     this.head = tempLL.head;
   }
+
+  removeAt(index) {
+    let temp = this.head;
+    let tempLL = new LinkedList();
+    for (let i = 0; i < this.size; i++) {
+      if (index == i && index == 0) {
+        temp = temp.next;
+        tempLL.prepend(temp.data);
+        temp = temp.next;
+        i++;
+      } else if (i == 0) {
+        tempLL.prepend(temp.data);
+        temp = temp.next;
+      } else if (i == index) {
+        temp = temp.next;
+        continue;
+      } else {
+        tempLL.append(temp.data);
+        temp = temp.next;
+      }
+    }
+    this.size--;
+    this.head = tempLL.head;
+  }
 }
 
 class Node {
@@ -195,5 +219,8 @@ console.log(ll.find(100));
 console.log(ll.pop(300));
 console.log(ll.toString());
 ll.insertAt(500, 0);
+console.log(ll);
+console.log(ll.toString());
+ll.removeAt(0);
 console.log(ll);
 console.log(ll.toString());
