@@ -94,23 +94,38 @@ class LinkedList {
     return temp;
   }
   //removes last element
+  //   pop() {
+  //     let tempLL = new LinkedList();
+  //     let temp = this.head;
+  //     let index = 0;
+  //     while (temp.next !== null) {
+  //       if (index > 0) {
+  //         tempLL.append(temp.data);
+  //         index++;
+  //       } else {
+  //         tempLL.prepend(temp.data);
+  //         index++;
+  //       }
+  //       temp = temp.next;
+  //     }
+  //     this.size -= 1;
+  //     this.head = tempLL.head;
+  //     return this.head;
+  //   }
+
   pop() {
-    let tempLL = new LinkedList();
+    if (!this.head) return; // Empty list
+    if (!this.head.next) {
+      // If there's only one node in the list
+      this.head = null;
+      return;
+    }
+
     let temp = this.head;
-    let index = 0;
-    while (temp.next !== null) {
-      if (index > 0) {
-        tempLL.append(temp.data);
-        index++;
-      } else {
-        tempLL.prepend(temp.data);
-        index++;
-      }
+    while (temp.next.next !== null) {
       temp = temp.next;
     }
-    this.size -= 1;
-    this.head = tempLL.head;
-    return this.head;
+    temp.next = null;
   }
 
   //checks to see if the linked list contains x
